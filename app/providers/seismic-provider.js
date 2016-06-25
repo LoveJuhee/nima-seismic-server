@@ -6,15 +6,9 @@ import {
   DEFAULT_SEISMIC_URL
 } from '../config/config';
 
-// import * as request from 'request';
-// import {
-//   Iconv as Iconv1
-// } from 'iconv';
-// import * as cheerio from 'cheerio';
-
-let request = require('request');
-let Iconv1 = require('iconv').Iconv;
-let cheerio = require('cheerio');
+const request = require('request');
+const Iconv = require('iconv').Iconv;
+const cheerio = require('cheerio');
 const queryString = require('query-string');
 
 /** SeismicProvider Class */
@@ -49,7 +43,7 @@ export class SeismicProvider {
       }
 
       let context = new Buffer(body, 'binary');
-      let iconv = new Iconv1('EUC-KR', 'UTF8');
+      let iconv = new Iconv('EUC-KR', 'UTF8');
       context = iconv.convert(context).toString();
 
       let $ = cheerio.load(context, {
