@@ -1,11 +1,11 @@
 import {
-  SeismicV1
-} from './api/v1/seismic';
+  SeismicProvider
+} from './providers/seismic-provider';
 import {
   SeismicOption
 } from './models/seismic-option';
 
-console.log(SeismicV1);
+console.log(SeismicProvider);
 
 let option = new SeismicOption();
 option.StartTm = '2016-04-01';
@@ -13,5 +13,14 @@ option.EndTm = '2016-04-31';
 
 console.log(option);
 
-let seismic = new SeismicV1();
-seismic.find(option);
+let seismic = new SeismicProvider();
+seismic.find(option)
+  .then(r => {
+    let seismicList = r;
+    seismicList.forEach((seismic) => {
+      console.log(seismic);
+    });
+  }, e => {
+    console.log(`seismic.find() error`);
+    console.log(e);
+  });
