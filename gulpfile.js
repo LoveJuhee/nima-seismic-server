@@ -1,10 +1,10 @@
 let gulp = require('gulp'),
-  del = require('del'),
-  print = require('gulp-print'),
   babel = require('gulp-babel'),
-  stripComments = require('gulp-strip-comments'),
+  print = require('gulp-print'),
   stripCode = require('gulp-strip-code'),
-  webserver = require('gulp-webserver');
+  stripComments = require('gulp-strip-comments'),
+  webserver = require('gulp-webserver'),
+  del = require('del');
 
 const DIST_PATH = 'dist';
 const DEPLOY_PATH = 'deploy';
