@@ -16,6 +16,7 @@ log.txt
 coverage/
 bower_components/
 dist/
+deploy/
 node_modules/
 tmp/
 temp/
@@ -24,6 +25,7 @@ www/build/
 $RECYCLE.BIN/
 .io-config.json
 
+# MAC
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate

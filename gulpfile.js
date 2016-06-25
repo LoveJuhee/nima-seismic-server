@@ -1,41 +1,45 @@
-var gulp = require('gulp'),
+let gulp = require('gulp'),
+  del = require('del'),
   print = require('gulp-print'),
   babel = require('gulp-babel'),
-  strip = require('gulp-strip-comments'),
+  stripComments = require('gulp-strip-comments'),
+  stripCode = require('gulp-strip-code'),
   webserver = require('gulp-webserver');
 
-gulp.task('puny-human', function () {
-  console.log('Puny humaaaan');
-});
+const DIST_PATH = 'dist';
+const DEPLOY_PATH = 'deploy';
 
-gulp.task('js', function () {
+/** 개발용 */
+gulp.task('js:dist', function () {
   return gulp.src('app/**/*.js')
-    .pipe(strip())
     .pipe(print())
-    .pipe(babel(
-      //   {
-      //   presets: ['es2015']
-      // }
-    ))
-    .pipe(gulp.dest('dist'));
+    .pipe(babel())
+    .pipe(gulp.dest(DIST_PATH));
 });
 
-gulp.task('libs', function () {
+/** 개발용 */
+gulp.task('libs:dist', function () {
   return gulp.src([
       'node_modules/systemjs/dist/system.js',
       'node_modules/babel-polyfill/dist/polyfill.js'
     ])
-    .pipe(strip())
     .pipe(print())
-    .pipe(gulp.dest('dist/libs'));
+    .pipe(gulp.dest(DIST_PATH + '/libs'));
 });
 
-gulp.task('build', ['js', 'libs'], function () {
+/** 개발용 */
+gulp.task('clean:dist', function () {
+  return del.sync(DIST_PATH);
+});
+
+/** 개발용 */
+gulp.task('build', ['clean:dist', 'js:dist', 'libs:dist'], function () {
   return gulp.src(['app/**/*.html', 'app/**/*.css'])
     .pipe(print())
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest(DIST_PATH));
 });
 
+/** 개발용 */
 gulp.task('serve', ['build'], function () {
   gulp.src('build')
     .pipe(webserver({
@@ -43,8 +47,43 @@ gulp.task('serve', ['build'], function () {
     }));
 });
 
+/** 개발용 */
 gulp.task('watch', function () {
   gulp.watch('app/**/*.*', ['build']);
+});
+
+/** 배포용 */
+gulp.task('js:deploy', function () {
+  return gulp.src('app/**/*.js')
+    .pipe(stripCode())
+    .pipe(stripComments())
+    .pipe(print())
+    .pipe(babel())
+    .pipe(gulp.dest(DEPLOY_PATH));
+});
+
+/** 배포용 */
+gulp.task('libs:deploy', function () {
+  return gulp.src([
+      'node_modules/systemjs/dist/system.js',
+      'node_modules/babel-polyfill/dist/polyfill.js'
+    ])
+    .pipe(stripCode())
+    .pipe(stripComments())
+    .pipe(print())
+    .pipe(gulp.dest(DEPLOY_PATH + '/libs'));
+});
+
+/** 배포용 */
+gulp.task('clean:deploy', function () {
+  return del.sync(DEPLOY_PATH);
+});
+
+/** 배포용 */
+gulp.task('deploy', ['clean:deploy', 'js:deploy', 'libs:deploy'], function () {
+  return gulp.src(['app/**/*.html', 'app/**/*.css'])
+    .pipe(print())
+    .pipe(gulp.dest(DEPLOY_PATH));
 });
 
 gulp.task('default', ['build']);

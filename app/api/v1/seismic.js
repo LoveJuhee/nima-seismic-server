@@ -1,27 +1,37 @@
 'use strict';
+/* test-code */
 import {
   DEBUG_SEISMIC
-} from '../config/debug';
+} from '../../config/debug';
+/* end-test-code */
 import {
   DEFAULT_SEISMIC_URL
-} from '../config/config';
+} from '../../config/config';
 
 const request = require('request');
 const Iconv = require('iconv').Iconv;
 const cheerio = require('cheerio');
 const queryString = require('query-string');
 
-/** SeismicProvider Class */
-export class SeismicProvider {
+/** SeismicV1 Class */
+export class SeismicV1 {
   constructor(url = DEFAULT_SEISMIC_URL) {
     this._url = url;
   }
 
-  /** KMA SEISMIC REQUEST URL */
+  /**
+   * 지진조회 URL 정보
+   * @return {string} url 기상청 지진 조회 URL
+   */
   get url() {
     return this._url;
   }
 
+  /**
+   * 지진목록 조회
+   * @param {SeismicOption} option 지진조회조건
+   * @return {Object} 지진목록
+   */
   find(option = {}) {
     let url = this.url;
     let query = queryString.stringify(option) || '';
@@ -29,10 +39,13 @@ export class SeismicProvider {
       url = url + '?' + query;
     }
 
+    /* test-code */
     if (DEBUG_SEISMIC) {
       console.log(`url:${url}`);
       console.log(`query:${query}`);
     }
+    /* end-test-code */
+
     //detailed info
     request({
       uri: url,
@@ -82,16 +95,21 @@ export class SeismicProvider {
         //   acc = htmlToString($(this).find("a").eq(1));
         // });
 
+        /* test-code */
         if (DEBUG_SEISMIC) {
           console.log(`${time}, ${mag}, ${lat}, ${lon}, ${area}, ${vel}, ${acc}`);
         }
+        /* end-test-code */
+
+        /* test-code */
         console.log(seismic);
+        /* end-test-code */
       });
     });
 
   }
 
   toString() {
-    return 'SeismicProvider class';
+    return 'SeismicV1 class';
   }
 }
