@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "gulp && node dist/main.js"
   },
   "author": "",
   "license": "ISC",
@@ -25,9 +25,7 @@
     "gulp-concat": "^2.6.0",
     "gulp-print": "^2.0.1",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-strip-comments": "^2.4.3",
     "gulp-webserver": "^0.9.1"
-  },
-  "scripts": {
-    "start": "gulp && node dist/main.js"
   }
 }

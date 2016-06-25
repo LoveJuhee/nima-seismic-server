@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
   print = require('gulp-print'),
   babel = require('gulp-babel'),
+  strip = require('gulp-strip-comments'),
   webserver = require('gulp-webserver');
 
 gulp.task('puny-human', function () {
@@ -9,10 +10,13 @@ gulp.task('puny-human', function () {
 
 gulp.task('js', function () {
   return gulp.src('app/**/*.js')
+    .pipe(strip())
     .pipe(print())
-    .pipe(babel({
-      presets: ['es2015']
-    }))
+    .pipe(babel(
+      //   {
+      //   presets: ['es2015']
+      // }
+    ))
     .pipe(gulp.dest('dist'));
 });
 
@@ -21,6 +25,7 @@ gulp.task('libs', function () {
       'node_modules/systemjs/dist/system.js',
       'node_modules/babel-polyfill/dist/polyfill.js'
     ])
+    .pipe(strip())
     .pipe(print())
     .pipe(gulp.dest('dist/libs'));
 });

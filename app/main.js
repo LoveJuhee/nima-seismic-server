@@ -5,8 +5,6 @@ import {
   SeismicOption
 } from './models/seismic-option';
 
-// let seismic = require('./providers/seismic');
-
 console.log(SeismicProvider);
 
 let option = new SeismicOption();

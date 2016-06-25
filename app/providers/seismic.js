@@ -101,6 +101,3 @@ export class SeismicProvider {
     return 'SeismicProvider class';
   }
 }
-ass ';
-}
-}
