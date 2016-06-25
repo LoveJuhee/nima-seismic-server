@@ -1,6 +1,6 @@
 import {
   SeismicProvider
-} from './providers/seismic';
+} from './providers/seismic-provider';
 import {
   SeismicOption
 } from './models/seismic-option';
