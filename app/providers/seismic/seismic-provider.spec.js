@@ -5,7 +5,7 @@ import {
 } from './seismic-provider';
 import {
   SeismicOption
-} from '../../models/seismic-option';
+} from '../../models/seismic/seismic-option';
 
 let option;
 let seismic;
