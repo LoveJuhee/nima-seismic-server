@@ -1,3 +1,5 @@
+'use strict';
+
 import {
   SeismicProvider
 } from './providers/seismic-provider';

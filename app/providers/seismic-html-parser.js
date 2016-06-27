@@ -8,7 +8,6 @@ import {
 
 const Iconv = require('iconv').Iconv;
 const cheerio = require('cheerio');
-const util = require('util');
 
 /**
  * 지진 HTML 데이터 파싱 클래스

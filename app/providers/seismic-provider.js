@@ -1,10 +1,5 @@
 'use strict';
 
-/* test-code */
-import {
-  DEBUG_SEISMIC
-} from '../config/debug';
-/* end-test-code */
 import {
   DEFAULT_SEISMIC_URL
 } from '../config/config';
