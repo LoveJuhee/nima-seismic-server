@@ -53,6 +53,7 @@ gulp.task('serve', ['build'], function () {
 /** 테스트 */
 gulp.task('tdd', ['build'], () => {
   gulp.src('dist/**/*.spec.js')
+    .pipe(gPrint())
     .pipe(jasmine());
 });
 
