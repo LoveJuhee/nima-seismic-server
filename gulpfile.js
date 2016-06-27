@@ -96,4 +96,9 @@ gulp.task('deploy', ['clean:deploy', 'js:deploy', 'libs:deploy'], function () {
     .pipe(gulp.dest(DEPLOY_PATH));
 });
 
+/** 정리용 */
+gulp.task('clean', ['clean:dist', 'clean:deploy'], function () {
+  console.log('clean done.');
+});
+
 gulp.task('default', ['build']);
