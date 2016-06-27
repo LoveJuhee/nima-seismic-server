@@ -1,15 +1,48 @@
 {
-  "expr": true,
   "node": true,
+  "browser": true,
   "esnext": true,
   "bitwise": true,
+  "camelcase": true,
+  "curly": true,
   "eqeqeq": true,
   "immed": true,
-  "latedef": "nofunc",
+  "latedef": true,
   "newcap": true,
   "noarg": true,
+  "quotmark": "single",
   "undef": true,
+  "unused": true,
+  "strict": true,
+  "trailing": true,
   "smarttabs": true,
-  "asi": true,
-  "debug": true
+  "ignoreDelimiters": [
+    {
+      "start": "start-non-standard",
+      "end": "end-non-standard"
+    }
+  ],
+  "globals": {
+    "jQuery": true,
+    "angular": true,
+    "console": true,
+    "$": true,
+    "_": true,
+    "moment": true,
+    "browser": true,
+    "element": true,
+    "by": true,
+    "jasmine": true,
+    "describe": true,
+    "it": true,
+    "before": true,
+    "beforeAll": true,
+    "beforeEach": true,
+    "after": true,
+    "afterAll": true,
+    "afterEach": true,
+    "expect": true,
+    "assert": true,
+    "sinon": true
+  }
 }

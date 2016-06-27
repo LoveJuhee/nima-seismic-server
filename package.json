@@ -27,9 +27,11 @@
     "del": "^2.2.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
+    "gulp-jasmine": "^2.4.0",
     "gulp-print": "^2.0.1",
     "gulp-strip-code": "^0.1.4",
     "gulp-strip-comments": "^2.4.3",
-    "gulp-webserver": "^0.9.1"
+    "gulp-webserver": "^0.9.1",
+    "jasmine": "^2.4.1"
   }
 }
