@@ -2,10 +2,10 @@
 
 import {
   SeismicProvider
-} from './providers/seismic-provider';
+} from './providers/seismic/seismic-provider';
 import {
   SeismicOption
-} from './models/seismic-option';
+} from './models/seismic/seismic-option';
 
 console.log(SeismicProvider);
 

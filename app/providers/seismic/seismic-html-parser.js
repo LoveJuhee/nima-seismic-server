@@ -3,7 +3,7 @@
 /* test-code */
 import {
   DEBUG_SEISMIC
-} from '../config/debug';
+} from '../../config/debug';
 /* end-test-code */
 
 const Iconv = require('iconv').Iconv;

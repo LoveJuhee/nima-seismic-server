@@ -2,7 +2,7 @@
 
 import {
   DEFAULT_SEISMIC_URL
-} from '../config/config';
+} from '../../config/config';
 import {
   SeismicHtmlParser
 } from './seismic-html-parser';
