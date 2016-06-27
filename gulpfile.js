@@ -64,7 +64,7 @@ gulp.task('watch', function () {
 
 /** 배포용 */
 gulp.task('js:deploy', function () {
-  return gulp.src('app/**/*.js')
+  return gulp.src(['app/**/*.js', '!app/**/*.spec.js'])
     .pipe(stripCode())
     .pipe(stripComments())
     .pipe(gPrint())
