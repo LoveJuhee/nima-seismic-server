@@ -61,13 +61,9 @@ export class SeismicProvider {
 
       // 지진데이터 조회
       requestPromise(requestOption)
-        .then(function (body) {
-          // 파싱처리 후 반환
-          resolve(parser.parseKma(body));
-        })
-        .catch(function (err) {
-          reject(err);
-        });
+        .then(parser.parseKma)
+        .then(resolve)
+        .catch(reject);
     });
   }
 
