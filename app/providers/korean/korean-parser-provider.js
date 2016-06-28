@@ -9,7 +9,7 @@ import {
 } from '../../config/debug';
 /* end-test-code */
 
-let util = new Util();
+const util = new Util();
 
 /**
  * 한글 파싱 모듈
@@ -53,9 +53,6 @@ export class KoreanParserProvider {
         reject(new Error('items is null or undefined.'));
       }
       resolve(items);
-      // this.split(items)
-      //   .then(resolve)
-      //   .catch(reject);
     });
   }
 
@@ -77,16 +74,6 @@ export class KoreanParserProvider {
       .then(util.print)
       /* end-test-code */
       .then(query);
-
-    // return new Promise(function (resolve, reject) {
-    //   this.split(message)
-    //     .then(this.query)
-    //     /* test-code */
-    //     .then(util.print)
-    //     /* end-test-code */
-    //     .then(resolve)
-    //     .catch(reject);
-    // });
   }
 
   toString() {
