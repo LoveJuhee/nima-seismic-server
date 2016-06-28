@@ -35,6 +35,7 @@
     "jasmine": true,
     "describe": true,
     "it": true,
+    "xit": true,
     "before": true,
     "beforeAll": true,
     "beforeEach": true,
