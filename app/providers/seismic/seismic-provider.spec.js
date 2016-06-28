@@ -12,7 +12,7 @@ let seismic;
 let seismicList;
 
 describe('지진조회 처리 모듈', function () {
-  beforeAll(function (done) {
+  beforeEach(function (done) {
     option = new SeismicOption();
     option.StartTm = '2016-04-01';
     option.EndTm = '2016-04-31';
