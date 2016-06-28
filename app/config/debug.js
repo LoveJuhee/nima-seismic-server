@@ -1,6 +1,7 @@
 /** Debug */
 export const DEBUG_SEISMIC = false;
 export const DEBUG_KOREAN_PARSER_PROVIDER = true;
+export const DEBUG_PARSE_CONFIG = true;
 
 export const SEISMIC_QUERY_LIST = [
   `올해 지진목록`,
