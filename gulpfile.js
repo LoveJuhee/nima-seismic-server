@@ -52,6 +52,11 @@ gulp.task('serve', ['build'], function () {
 
 /** 테스트 */
 gulp.task('tdd', ['build'], () => {
+  console.log('');
+  console.log('#######################');
+  console.log('# TDD');
+  console.log('#######################');
+  console.log('');
   gulp.src('dist/**/*.spec.js')
     .pipe(gPrint())
     .pipe(jasmine());
@@ -64,7 +69,7 @@ gulp.task('watch', function () {
 
 /** 배포용 */
 gulp.task('js:deploy', function () {
-  return gulp.src(['app/**/*.js', '!app/**/*.spec.js'])
+  return gulp.src(['app/**/*.js', '!app/**/*.spec.js', '!app/config/debug.js'])
     .pipe(stripCode())
     .pipe(stripComments())
     .pipe(gPrint())
