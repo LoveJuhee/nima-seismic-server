@@ -1,7 +1,10 @@
 'use strict';
 
 import {
-  Util
+  instance
+} from '../../config/parse';
+import {
+  util
 } from '../util';
 /* test-code */
 import {
@@ -9,7 +12,7 @@ import {
 } from '../../config/debug';
 /* end-test-code */
 
-const util = new Util();
+const config = instance;
 
 /**
  * 한글 파싱 모듈
@@ -38,6 +41,15 @@ export class KoreanParserProvider {
   }
 
   /**
+   * 단어 중 시간데이터를 추출하여 기간 설정
+   * @param {Object} obj 작업 데이터
+   * @return {Object} 변환데이터
+   */
+  queryTime(obj) {
+    return '';
+  }
+
+  /**
    * 한글기반 쿼리 생성
    * @param {array} items 한글 메시지 분리 데이터
    * @return {KoreanParserResult} 분석결과 객체
@@ -52,7 +64,13 @@ export class KoreanParserProvider {
       if (!items) {
         reject(new Error('items is null or undefined.'));
       }
-      resolve(items);
+      let obj = {
+        row: items,
+        convert: [],
+      };
+      // this.queryTime(obj)
+      //   .then(resolve);
+      // resolve(items);
     });
   }
 
@@ -67,13 +85,11 @@ export class KoreanParserProvider {
       console.log(`KoreanParserProvider.parse called.`);
     }
     /* end-test-code */
-    let split = this.split(message);
-    let query = this.query;
-    return split
+    return this.split(message)
       /* test-code */
       .then(util.print)
       /* end-test-code */
-      .then(query);
+      .then(this.query);
   }
 
   toString() {

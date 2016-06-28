@@ -11,16 +11,15 @@ import {
 } from '../../config/debug';
 
 import {
-  Util
+  util
 } from '../util';
 
 let provider = new KoreanParserProvider();
-let util = new Util();
 
 describe('한글 변환 테스트', function () {
   beforeEach(function () {});
 
-  it('지진 쿼리 생성 테스트', function (done) {
+  xit('지진 쿼리 생성 테스트', function (done) {
     let requests = SEISMIC_QUERY_LIST.reduce((chain, item) => {
       return chain.then(() => new Promise((resolve) => {
         provider.parse(item)
