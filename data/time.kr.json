@@ -49,5 +49,24 @@
     "convert": "day+4",
     "type": "time",
     "comment": "그글피에 대한 설정"
+  }, {
+    "keywords": [
+      "금주", "이번주"
+    ],
+    "convert": "week+0",
+    "type": "time",
+    "comment": "금주에 대한 설정"
+  }, {
+    "keywords": ["저번주"],
+    "convert": "week-1",
+    "type": "time",
+    "comment": "저번주에 대한 설정"
+  }, {
+    "keywords": [
+      "다음주", "차주"
+    ],
+    "convert": "week+1",
+    "type": "time",
+    "comment": "다음주에 대한 설정"
   }
 ]
