@@ -1,3 +1,6 @@
+'use strict';
+require('source-map-support').install();
+
 /** SeismicOption Class */
 export class SeismicOption {
   constructor() {}

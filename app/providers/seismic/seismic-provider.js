@@ -1,5 +1,11 @@
 'use strict';
 
+/* test-code */
+import {
+  DEBUG_SEISMIC
+} from '../../config/debug-flag';
+/* end-test-code */
+
 import {
   DEFAULT_SEISMIC_URL
 } from '../../config/config';
@@ -45,8 +51,10 @@ export class SeismicProvider {
 
     return new Promise(function (resolve, reject) {
       /* test-code */
-      console.log(`url:${url}`);
-      console.log(`query:${query}`);
+      if (DEBUG_SEISMIC) {
+        console.log(`url:${url}`);
+        console.log(`query:${query}`);
+      }
       /* end-test-code */
 
       let requestOption = {

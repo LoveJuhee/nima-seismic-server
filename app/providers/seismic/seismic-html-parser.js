@@ -3,7 +3,7 @@
 /* test-code */
 import {
   DEBUG_SEISMIC
-} from '../../config/debug';
+} from '../../config/debug-flag';
 /* end-test-code */
 
 const Iconv = require('iconv').Iconv;
@@ -83,7 +83,9 @@ export class SeismicHtmlParser {
       }
 
       /* test-code */
-      console.log(`지진 자료 개수: ${seismicList.length}`);
+      if (DEBUG_SEISMIC) {
+        console.log(`지진 자료 개수: ${seismicList.length}`);
+      }
       /* end-test-code */
 
       resolve(seismicList);
