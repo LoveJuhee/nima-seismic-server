@@ -1,7 +1,7 @@
 'use strict';
 
 import {
-  KoreanParserProvider
+  KoreanParserrProvider
 } from './korean-parser-provider';
 
 import {
@@ -12,7 +12,7 @@ import {
 
 import util from '../util';
 
-let provider = new KoreanParserProvider();
+let provider = new KoreanParserrProvider();
 
 describe('한글 변환 테스트', function () {
   beforeEach(function () {});

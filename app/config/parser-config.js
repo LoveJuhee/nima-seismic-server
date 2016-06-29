@@ -8,7 +8,7 @@ import {
 } from './debug-flag';
 /* end-test-code */
 let debug = require('debug')(LOGGING_PARSE_CONFIG);
-import factory from './parse/parse-item-factory';
+import factory from './parser/parser-item-factory';
 
 const TIME_KR_JSON = 'data/time.kr.json';
 
@@ -23,7 +23,7 @@ debug(`TIME_KR_JSON: ${TIME_KR_JSON}`);
  * 파싱처리를 위한 설정파일 로드 클래스
  * @class
  */
-class ParseConfig {
+class ParserConfig {
   constructor() {
     // 시간 처리 JSON 로드
     this._time = factory.load(TIME_KR_JSON);
@@ -39,9 +39,9 @@ class ParseConfig {
   }
 
   toString() {
-    return 'ParseConfig class';
+    return 'ParserConfig class';
   }
 }
 
-const instance = new ParseConfig();
+const instance = new ParserConfig();
 export default instance;

@@ -1,13 +1,13 @@
 'use strict';
 require('source-map-support').install();
 
-import instance from './parse-config';
+import instance from './parser-config';
 
 import util from '../providers/util';
 
 let parse = instance;
 
-describe('ParseConfig TEST', function () {
+describe('ParserConfig TEST', function () {
   it('parse is valid', function () {
     expect(parse).not.toBeUndefined();
   });

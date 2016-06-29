@@ -1,7 +1,7 @@
 'use strict';
 require('source-map-support').install();
 
-import instance from '../../config/parse-config';
+import instance from '../../config/parser-config';
 import util from '../util';
 /* test-code */
 import {
@@ -13,7 +13,7 @@ import {
  * 한글 파싱 모듈
  * @class
  */
-export class KoreanParserProvider {
+export class KoreanParserrProvider {
   constructor() {}
 
   /**
@@ -66,7 +66,7 @@ export class KoreanParserProvider {
   /**
    * 한글 분석
    * @param {string} message 한글 메시지
-   * @return {KoreanParserResult} 분석결과 객체
+   * @return {KoreanParserrResult} 분석결과 객체
    */
   parse(message) {
     let queryTime = this.queryTime;
@@ -77,6 +77,6 @@ export class KoreanParserProvider {
   }
 
   toString() {
-    return 'KoreanParserProvider class';
+    return 'KoreanParserrProvider class';
   }
 }

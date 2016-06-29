@@ -10,9 +10,9 @@ import {
   LOGGING_PARSE_CONFIG,
 } from '../config';
 import {
-  ParseItem,
-  ParseCorrectItem,
-} from './parse-item';
+  ParserItem,
+  ParserCorrectItem,
+} from './parser-item';
 import util from '../../providers/util';
 
 let debug = require('debug')(LOGGING_PARSE_CONFIG);
@@ -21,23 +21,23 @@ let debug = require('debug')(LOGGING_PARSE_CONFIG);
  * JSON 데이터를 읽어서 keywords 2차원 배열을 1차원 배열로 생성하는 객체
  * @class
  */
-export class ParseItemFactory {
+export class ParserItemFactory {
   /**
-   * 파일을 읽어서 ParseItem array로 반환
+   * 파일을 읽어서 ParserItem array로 반환
    * @param {string} fileName JSON 파일 경로
-   * @return {Array<ParseItem>} 변환된 ParseItem 배열
+   * @return {Array<ParserItem>} 변환된 ParserItem 배열
    */
   load(fileName) {
     if (!fileName) {
-      throw new Error('ParseItemFactory.load: fileName is null or undefined.');
+      throw new Error('ParserItemFactory.load: fileName is null or undefined.');
     }
 
     /* test-code */
     if (DEBUG_PARSE_CONFIG) {
-      console.log(`ParseItemFactory.load: fileName is '${fileName}'.`);
+      console.log(`ParserItemFactory.load: fileName is '${fileName}'.`);
     }
     /* end-test-code */
-    debug(`ParseItemFactory.load: fileName is '${fileName}'.`);
+    debug(`ParserItemFactory.load: fileName is '${fileName}'.`);
 
     let itemList = [];
     // 시간 처리 JSON 로드
@@ -49,7 +49,7 @@ export class ParseItemFactory {
       }
       for (var j = 0; j < item.keywords.length; j++) {
         let keyword = item.keywords[j];
-        let p = new ParseItem();
+        let p = new ParserItem();
         p.keyword = keyword;
         p.convert = item.convert;
         p.type = item.type;
@@ -57,7 +57,7 @@ export class ParseItemFactory {
         itemList.push(p);
       }
     }
-    itemList.sort(util.compareParseKeyword);
+    itemList.sort(util.compareParserKeyword);
 
     /* test-code */
     if (DEBUG_PARSE_CONFIG) {
@@ -70,21 +70,21 @@ export class ParseItemFactory {
   }
 
   /**
-   * 파일을 읽어서 ParseCorrectItem array로 반환
+   * 파일을 읽어서 ParserCorrectItem array로 반환
    * @param {string} fileName JSON 파일 경로
-   * @return {Array<ParseCorrectItem>} 변환된 ParseCorrectItem 배열
+   * @return {Array<ParserCorrectItem>} 변환된 ParserCorrectItem 배열
    */
   loadCorrect(fileName) {
     if (!fileName) {
-      throw new Error('ParseItemFactory.loadCorrect: fileName is null or undefined.');
+      throw new Error('ParserItemFactory.loadCorrect: fileName is null or undefined.');
     }
 
     /* test-code */
     if (DEBUG_PARSE_CONFIG) {
-      console.log(`ParseItemFactory.loadCorrect: fileName is '${fileName}'.`);
+      console.log(`ParserItemFactory.loadCorrect: fileName is '${fileName}'.`);
     }
     /* end-test-code */
-    debug(`ParseItemFactory.loadCorrect: fileName is '${fileName}'.`);
+    debug(`ParserItemFactory.loadCorrect: fileName is '${fileName}'.`);
 
     // TODO: 객체관련 생성로직을 구현해야한다.
 
@@ -98,7 +98,7 @@ export class ParseItemFactory {
       }
       for (var j = 0; j < item.keywords.length; j++) {
         let keyword = item.keywords[j];
-        let p = new ParseCorrectItem();
+        let p = new ParserCorrectItem();
         p.keyword = keyword;
         p.convert = item.convert;
         p.type = item.type;
@@ -106,7 +106,7 @@ export class ParseItemFactory {
         correctList.push(p);
       }
     }
-    correctList.sort(util.compareParseKeyword);
+    correctList.sort(util.compareParserKeyword);
 
     /* test-code */
     if (DEBUG_PARSE_CONFIG) {
@@ -119,9 +119,9 @@ export class ParseItemFactory {
   }
 
   toString() {
-    return 'ParseItemFactory class';
+    return 'ParserItemFactory class';
   }
 }
 
-const factory = new ParseItemFactory();
+const factory = new ParserItemFactory();
 export default factory;

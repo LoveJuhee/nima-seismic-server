@@ -5,7 +5,7 @@ require('source-map-support').install();
  * JSON 데이터 기반으로 보정하기 위한 파싱 클래스
  * @class
  */
-export class ParseCorrectItem {
+export class ParserCorrectItem {
   constructor() {}
 
   /** @member {string} keyword */
@@ -41,7 +41,7 @@ export class ParseCorrectItem {
   }
 
   toString() {
-    return 'ParseItem class';
+    return 'ParserItem class';
   }
 }
 
@@ -49,7 +49,7 @@ export class ParseCorrectItem {
  * JSON 데이터 기반으로 데이터 생성을 위한 파싱 클래스
  * @class
  */
-export class ParseItem {
+export class ParserItem {
   constructor() {}
 
   /** @member {string} keyword */
@@ -85,6 +85,6 @@ export class ParseItem {
   }
 
   toString() {
-    return 'ParseItem class';
+    return 'ParserItem class';
   }
 }
