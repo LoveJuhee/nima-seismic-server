@@ -1,10 +1,14 @@
-/** Debug */
+/** Debug Flags */
 export const DEBUG_SEISMIC = false;
 export const DEBUG_KOREAN_PARSER_PROVIDER = true;
 export const DEBUG_PARSE_CONFIG = true;
 
 export const SEISMIC_QUERY_LIST = [
+  `그글피에 발생할 지진정보`,
+  `저번주에 발생한 지진목록`,
   `올해 지진목록`,
+  `올해 국내 지진목록`,
+  `올해 국외 지진목록`,
   `4월 지진목록 중 규모 3이상`,
   `규모 3이상`,
   `전주 지진 규모로 정렬`,
