@@ -1,6 +1,7 @@
 'use strict';
 
 let gulp = require('gulp'),
+  sourcemaps = require('gulp-sourcemaps'),
   babel = require('gulp-babel'),
   gPrint = require('gulp-print'),
   stripCode = require('gulp-strip-code'),
@@ -11,23 +12,16 @@ let gulp = require('gulp'),
 
 const DIST_PATH = 'dist';
 const DEPLOY_PATH = 'deploy';
+const MAPS_PATH = '.';
 
 /** 개발용 */
 gulp.task('js:dist', function () {
   return gulp.src('app/**/*.js')
+    .pipe(sourcemaps.init())
     .pipe(gPrint())
     .pipe(babel())
+    .pipe(sourcemaps.write(MAPS_PATH))
     .pipe(gulp.dest(DIST_PATH));
-});
-
-/** 개발용 */
-gulp.task('libs:dist', function () {
-  return gulp.src([
-      'node_modules/systemjs/dist/system.js',
-      'node_modules/babel-polyfill/dist/polyfill.js'
-    ])
-    .pipe(gPrint())
-    .pipe(gulp.dest(DIST_PATH + '/libs'));
 });
 
 /** 개발용 */
@@ -36,7 +30,7 @@ gulp.task('clean:dist', function () {
 });
 
 /** 개발용 */
-gulp.task('build', ['clean:dist', 'js:dist', 'libs:dist'], function () {
+gulp.task('build', ['clean:dist', 'js:dist'], function () {
   return gulp.src(['app/**/*.html', 'app/**/*.css'])
     .pipe(gPrint())
     .pipe(gulp.dest(DIST_PATH));
@@ -70,23 +64,13 @@ gulp.task('watch', function () {
 /** 배포용 */
 gulp.task('js:deploy', function () {
   return gulp.src(['app/**/*.js', '!app/**/*.spec.js', '!app/config/debug.js'])
+    .pipe(sourcemaps.init())
+    .pipe(gPrint())
     .pipe(stripCode())
     .pipe(stripComments())
-    .pipe(gPrint())
     .pipe(babel())
+    .pipe(sourcemaps.write(MAPS_PATH))
     .pipe(gulp.dest(DEPLOY_PATH));
-});
-
-/** 배포용 */
-gulp.task('libs:deploy', function () {
-  return gulp.src([
-      'node_modules/systemjs/dist/system.js',
-      'node_modules/babel-polyfill/dist/polyfill.js'
-    ])
-    .pipe(stripCode())
-    .pipe(stripComments())
-    .pipe(gPrint())
-    .pipe(gulp.dest(DEPLOY_PATH + '/libs'));
 });
 
 /** 배포용 */
@@ -95,7 +79,7 @@ gulp.task('clean:deploy', function () {
 });
 
 /** 배포용 */
-gulp.task('deploy', ['clean:deploy', 'js:deploy', 'libs:deploy'], function () {
+gulp.task('deploy', ['clean:deploy', 'js:deploy'], function () {
   return gulp.src(['app/**/*.html', 'app/**/*.css'])
     .pipe(gPrint())
     .pipe(gulp.dest(DEPLOY_PATH));
