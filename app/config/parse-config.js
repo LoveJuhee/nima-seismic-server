@@ -1,12 +1,14 @@
 'use strict';
+require('source-map-support').install();
+
 /* test-code */
 import {
-  DEBUG_PARSE_CONFIG
-} from './debug';
+  DEBUG_PARSE_CONFIG,
+  LOGGING_PARSE_CONFIG,
+} from './debug-flag';
 /* end-test-code */
-import {
-  util
-} from '../providers/util';
+let debug = require('debug')(LOGGING_PARSE_CONFIG);
+import factory from './parse/parse-item-factory';
 
 const TIME_KR_JSON = 'data/time.kr.json';
 
@@ -15,6 +17,7 @@ if (DEBUG_PARSE_CONFIG) {
   console.log(`TIME_KR_JSON: ${TIME_KR_JSON}`);
 }
 /* end-test-code */
+debug(`TIME_KR_JSON: ${TIME_KR_JSON}`);
 
 /**
  * 파싱처리를 위한 설정파일 로드 클래스
@@ -22,7 +25,8 @@ if (DEBUG_PARSE_CONFIG) {
  */
 class ParseConfig {
   constructor() {
-    this._time = util.toJsonSync(TIME_KR_JSON);
+    // 시간 처리 JSON 로드
+    this._time = factory.load(TIME_KR_JSON);
   }
 
   /**
@@ -39,4 +43,5 @@ class ParseConfig {
   }
 }
 
-export const instance = new ParseConfig();
+const instance = new ParseConfig();
+export default instance;

@@ -1,12 +1,9 @@
 'use strict';
+require('source-map-support').install();
 
-import {
-  instance
-} from './parse';
+import instance from './parse-config';
 
-import {
-  util
-} from '../providers/util';
+import util from '../providers/util';
 
 let parse = instance;
 
@@ -18,5 +15,6 @@ describe('ParseConfig TEST', function () {
   it('time is array list', function () {
     expect(parse.time).not.toBeUndefined();
     expect(parse.time.length).toBeGreaterThan(0);
+    console.log(parse.item);
   });
 });
