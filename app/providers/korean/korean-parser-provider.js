@@ -1,18 +1,13 @@
 'use strict';
+require('source-map-support').install();
 
-import {
-  instance
-} from '../../config/parse';
-import {
-  util
-} from '../util';
+import instance from '../../config/parse-config';
+import util from '../util';
 /* test-code */
 import {
   DEBUG_KOREAN_PARSER_PROVIDER
-} from '../../config/debug';
+} from '../../config/debug-flag';
 /* end-test-code */
-
-const config = instance;
 
 /**
  * 한글 파싱 모듈
@@ -28,15 +23,14 @@ export class KoreanParserProvider {
    */
   split(message) {
     return new Promise(function (resolve, reject) {
-      /* test-code */
-      if (DEBUG_KOREAN_PARSER_PROVIDER) {
-        console.log(`KoreanParserProvider.split called.`);
-      }
-      /* end-test-code */
       if (!message) {
         reject(new Error('message is null or undefined.'));
       }
-      resolve(message.split(' '));
+      let result = {
+        low: message,
+        text: message.split(' '),
+      };
+      resolve(result);
     });
   }
 
@@ -45,32 +39,27 @@ export class KoreanParserProvider {
    * @param {Object} obj 작업 데이터
    * @return {Object} 변환데이터
    */
-  queryTime(obj) {
-    return '';
+  convertTime(obj) {
+    return new Promise(function (resolve, reject) {
+      if (!obj) {
+        reject(new Error('obj is null or undefined.'));
+      }
+      let time = instance.time;
+      resolve(obj);
+    });
   }
 
   /**
-   * 한글기반 쿼리 생성
-   * @param {array} items 한글 메시지 분리 데이터
-   * @return {KoreanParserResult} 분석결과 객체
+   * 텍스트를 변환
+   * @param {Object} obj 처리를 위한 객체
+   * @return {Promice} 처리를 위한 Promise 객체
    */
-  query(items) {
+  convertText(obj) {
     return new Promise(function (resolve, reject) {
-      /* test-code */
-      if (DEBUG_KOREAN_PARSER_PROVIDER) {
-        console.log(`KoreanParserProvider.query called.`);
+      if (!obj) {
+        reject(new Error('obj is null or undefined.'));
       }
-      /* end-test-code */
-      if (!items) {
-        reject(new Error('items is null or undefined.'));
-      }
-      let obj = {
-        row: items,
-        convert: [],
-      };
-      // this.queryTime(obj)
-      //   .then(resolve);
-      // resolve(items);
+      resolve(obj);
     });
   }
 
@@ -80,16 +69,11 @@ export class KoreanParserProvider {
    * @return {KoreanParserResult} 분석결과 객체
    */
   parse(message) {
-    /* test-code */
-    if (DEBUG_KOREAN_PARSER_PROVIDER) {
-      console.log(`KoreanParserProvider.parse called.`);
-    }
-    /* end-test-code */
+    let queryTime = this.queryTime;
+    let queryText = this.queryText;
     return this.split(message)
-      /* test-code */
-      .then(util.print)
-      /* end-test-code */
-      .then(this.query);
+      .then(queryTime)
+      .then(queryText);
   }
 
   toString() {
