@@ -1,7 +1,7 @@
 /** Debug Flags */
 export const DEBUG_SEISMIC = false;
 export const DEBUG_KOREAN_PARSER_PROVIDER = true;
-export const DEBUG_PARSE_CONFIG = true;
+export const DEBUG_PARSE_CONFIG = false;
 
 export const SEISMIC_QUERY_LIST = [
   `그글피에 발생할 지진정보`,

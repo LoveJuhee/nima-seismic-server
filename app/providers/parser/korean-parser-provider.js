@@ -2,6 +2,9 @@
 require('source-map-support').install();
 
 import instance from '../../config/parser-config';
+import {
+  SearchQuery
+} from '../queries/search-query';
 import util from '../util';
 /* test-code */
 import {
@@ -28,9 +31,25 @@ export class KoreanParserrProvider {
       }
       let result = {
         low: message,
-        text: message.split(' '),
+        split: message.split(' '),
+        items: [],
+        query: new SearchQuery(),
       };
       resolve(result);
+    });
+  }
+
+  /**
+   * 단어 중 보정이 필요한 작업을 수행
+   * @param {Object} obj 작업 데이터
+   * @return {Object} 변환데이터
+   */
+  parsePrev(obj) {
+    return new Promise(function (resolve, reject) {
+      if (!obj) {
+        reject(new Error('obj is null or undefined.'));
+      }
+      resolve(obj);
     });
   }
 
@@ -39,12 +58,34 @@ export class KoreanParserrProvider {
    * @param {Object} obj 작업 데이터
    * @return {Object} 변환데이터
    */
-  convertTime(obj) {
+  parseTime(obj) {
     return new Promise(function (resolve, reject) {
       if (!obj) {
         reject(new Error('obj is null or undefined.'));
       }
       let time = instance.time;
+      /* test-code */
+      if (DEBUG_KOREAN_PARSER_PROVIDER) {
+        console.log(`time.length: ${time.length}`);
+      }
+      /* end-test-code */
+
+      let items = obj.items;
+      let split = obj.split;
+      for (var i = 0; i < split.length; i++) {
+        const target = split[i];
+        for (var j = 0; j < time.length; j++) {
+          if (target.indexOf(time[j].keyword) === 0) {
+            /* test-code */
+            if (DEBUG_KOREAN_PARSER_PROVIDER) {
+              console.log(`find it! ${target} ==> ${time[j].keyword}`);
+            }
+            /* end-test-code */
+            items.push(time[j]);
+          }
+        }
+      }
+
       resolve(obj);
     });
   }
@@ -54,7 +95,7 @@ export class KoreanParserrProvider {
    * @param {Object} obj 처리를 위한 객체
    * @return {Promice} 처리를 위한 Promise 객체
    */
-  convertText(obj) {
+  parseText(obj) {
     return new Promise(function (resolve, reject) {
       if (!obj) {
         reject(new Error('obj is null or undefined.'));
@@ -69,11 +110,13 @@ export class KoreanParserrProvider {
    * @return {KoreanParserrResult} 분석결과 객체
    */
   parse(message) {
-    let queryTime = this.queryTime;
-    let queryText = this.queryText;
+    let parsePrev = this.parsePrev;
+    let parseTime = this.parseTime;
+    let parseText = this.parseText;
     return this.split(message)
-      .then(queryTime)
-      .then(queryText);
+      .then(parsePrev)
+      .then(parseTime)
+      .then(parseText);
   }
 
   toString() {

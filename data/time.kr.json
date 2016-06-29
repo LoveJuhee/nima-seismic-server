@@ -1,72 +1,143 @@
 [
   {
     "keywords": [
-      "오늘", "금일"
+      "오늘",
+      "금일"
     ],
     "convert": "day+0",
     "type": "time",
     "comment": "오늘에 대한 설정"
-  }, {
+  },
+  {
     "keywords": [
-      "내일", "명일"
+      "내일",
+      "명일"
     ],
     "convert": "day+1",
     "type": "time",
     "comment": "내일에 대한 설정"
-  }, {
+  },
+  {
     "keywords": [
-      "어제", "전일"
+      "어제",
+      "전일"
     ],
     "convert": "day-1",
     "type": "time",
     "comment": "어제에 대한 설정"
-  }, {
+  },
+  {
     "keywords": [
-      "그저께", "그제"
+      "그저께",
+      "그제"
     ],
     "convert": "day-2",
     "type": "time",
     "comment": "그저께에 대한 설정"
-  }, {
-    "keywords": ["그끄저께"],
+  },
+  {
+    "keywords": [
+      "그끄저께"
+    ],
     "convert": "day-3",
     "type": "time",
     "comment": "그끄저께에 대한 설정"
-  }, {
+  },
+  {
     "keywords": [
-      "모레", "내일모레", "낼모레", "내일 모레"
+      "모레",
+      "내일모레",
+      "낼모레",
+      "내일 모레"
     ],
     "convert": "day+2",
     "type": "time",
     "comment": "모레에 대한 설정"
-  }, {
-    "keywords": ["글피"],
+  },
+  {
+    "keywords": [
+      "글피"
+    ],
     "convert": "day+3",
     "type": "time",
     "comment": "글피에 대한 설정"
-  }, {
-    "keywords": ["그글피"],
+  },
+  {
+    "keywords": [
+      "그글피"
+    ],
     "convert": "day+4",
     "type": "time",
     "comment": "그글피에 대한 설정"
-  }, {
+  },
+  {
     "keywords": [
-      "금주", "이번주"
+      "금주",
+      "이번주"
     ],
     "convert": "week+0",
     "type": "time",
     "comment": "금주에 대한 설정"
-  }, {
-    "keywords": ["저번주"],
+  },
+  {
+    "keywords": [
+      "저번주"
+    ],
     "convert": "week-1",
     "type": "time",
     "comment": "저번주에 대한 설정"
-  }, {
+  },
+  {
     "keywords": [
-      "다음주", "차주"
+      "다음주",
+      "차주"
     ],
     "convert": "week+1",
     "type": "time",
     "comment": "다음주에 대한 설정"
+  },
+  {
+    "keywords": [
+      "지지난달",
+      "전전월",
+      "거거월",
+      "선선월",
+      "전전달"
+    ],
+    "convert": "month+0",
+    "type": "time",
+    "comment": "지지난달에 대한 설정"
+  },
+  {
+    "keywords": [
+      "전월",
+      "지난달"
+    ],
+    "convert": "month-1",
+    "type": "time",
+    "comment": "전월에 대한 설정"
+  },
+  {
+    "keywords": [
+      "이달",
+      "당월",
+      "본월",
+      "차월",
+      "금월",
+      "이번달"
+    ],
+    "convert": "month+0",
+    "type": "time",
+    "comment": "이달에 대한 설정"
+  },
+  {
+    "keywords": [
+      "금년",
+      "올해",
+      "이번해"
+    ],
+    "convert": "year+1",
+    "type": "time",
+    "comment": "금년에 대한 설정"
   }
 ]

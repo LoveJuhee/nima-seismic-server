@@ -1,34 +1,49 @@
-[{
-  "keyword": "내일",
-  "corrects": [{
-    "if": {
-      "index": "1",
-      "values": ["모레", "모래"]
-    },
-    "correct": {
-      "range": "1",
-      "convert": "내일모레"
-    }
-  }]
-}, {
-  "keyword": "이번",
-  "corrects": [{
-    "if": {
-      "index": "1",
-      "values": ["주"]
-    },
-    "correct": {
-      "range": "1",
-      "convert": "금주"
-    }
-  }, {
-    "if": {
-      "index": "1",
-      "values": ["해"]
-    },
-    "correct": {
-      "range": "1",
-      "convert": "금년"
-    }
-  }]
-}]
+[
+  {
+    "keyword": "내일",
+    "corrects": [
+      {
+        "if": {
+          "index": "1",
+          "values": [
+            "모레",
+            "모래"
+          ]
+        },
+        "correct": {
+          "range": "1",
+          "convert": "내일모레"
+        }
+      }
+    ]
+  },
+  {
+    "keyword": "이번",
+    "corrects": [
+      {
+        "if": {
+          "index": "1",
+          "values": [
+            "주"
+          ]
+        },
+        "correct": {
+          "range": "1",
+          "convert": "금주"
+        }
+      },
+      {
+        "if": {
+          "index": "1",
+          "values": [
+            "해"
+          ]
+        },
+        "correct": {
+          "range": "1",
+          "convert": "금년"
+        }
+      }
+    ]
+  }
+]
