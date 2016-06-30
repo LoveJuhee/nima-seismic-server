@@ -19,7 +19,6 @@ class Linker {
   constructor() {}
 
   link(app, uri, controller) {
-    console.log(uri);
     app.get(uri, controller.index);
     app.get(uri + ':id', controller.show);
     app.post(uri, controller.create);
@@ -46,7 +45,6 @@ export class Routes {
       throw (new Error('app is null or undefined.'));
     }
     let linker = new Linker();
-
     linker.link(app, NIMA_ROUTE_URI, new NimaController());
     linker.link(app, SEISMIC_ROUTE_URI, new SeismicController());
   }
