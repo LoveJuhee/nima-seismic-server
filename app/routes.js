@@ -37,7 +37,7 @@ class Linker {
 export class Routes {
   /**
    * 생성자
-   * @param {Express} app Express 객체
+   * @param {express.app} app Express 객체
    */
   constructor(app) {
     if (!app) {

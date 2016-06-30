@@ -16,7 +16,7 @@ import {
 } from '../../providers/util';
 const nodeUtil = require('util');
 
-export const NIMA_ROUTE_URI = '/api/nimas/';
+export const NIMA_ROUTE_URI = '/api/nimas';
 
 /**
  * rest nima 에 대한 처리 클래스
@@ -46,9 +46,12 @@ export class NimaController {
    * @return {void} void
    */
   show(req, res) {
-    let params = nimaUtil.toEncodeObject(req.params);
-    debug(`show ${nodeUtil.inspect(params)}`);
-    res.send('show');
+    debug(`params: ${nodeUtil.inspect(req.params)}`);
+    nimaUtil.fromRequestParams(req.params)
+      .then(nimaUtil.print)
+      .then(r => {
+        res.send(`show ${nodeUtil.inspect(r)}`);
+      });
   }
 
   /**
@@ -58,9 +61,9 @@ export class NimaController {
    * @return {void} void
    */
   create(req, res) {
-    let params = nimaUtil.toEncodeObject(req.params);
-    debug(`create ${nodeUtil.inspect(params)}`);
-    res.send('create');
+    let body = req.body;
+    debug(`create ${nodeUtil.inspect(body)}`);
+    res.send(`create ${nodeUtil.inspect(body)}`);
   }
 
   /**
