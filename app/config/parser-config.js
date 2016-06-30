@@ -10,7 +10,7 @@ import {
 let debug = require('debug')(LOGGING_PARSE_CONFIG);
 import factory from './parser/parser-item-factory';
 
-const TIME_KR_JSON = 'data/time.kr.json';
+const TIME_KR_JSON = 'data/parser/time.kr.json';
 
 /* test-code */
 if (DEBUG_PARSE_CONFIG) {
