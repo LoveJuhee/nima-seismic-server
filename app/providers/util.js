@@ -2,6 +2,7 @@
 require('source-map-support').install();
 
 const fs = require('fs');
+const urlencode = require('urlencode');
 
 /**
  * 유틸리티 라이브러리 클래스
@@ -36,6 +37,53 @@ class Util {
       return JSON.parse(reads);
     } catch (e) {
       console.error(e);
+      throw e;
+    }
+  }
+
+  /**
+   * request 발생 시 파라메터를 한글대응하기 위해 인코딩하고 반환
+   * @param {Object} params request 파라메터
+   * @return {Object} encode 처리한 오브젝트
+   */
+  toEncodeObject(params) {
+    if (!params) {
+      return {};
+    }
+    try {
+      let result = {};
+      for (var key in params) {
+        if (params.hasOwnProperty(key)) {
+          result[key] = urlencode.decode(params[key]);
+        }
+      }
+      return result;
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+  }
+
+  /**
+   * 한글에 대한 문자를 디코딩하고 반환
+   * @param {Object} params 디코딩할 객체
+   * @return {Object} decode 처리한 오브젝트
+   */
+  toDecodeObject(params) {
+    if (!params) {
+      return {};
+    }
+    try {
+      let result = {};
+      for (var key in params) {
+        if (params.hasOwnProperty(key)) {
+          result[key] = urlencode(params[key]);
+        }
+      }
+      return result;
+    } catch (e) {
+      console.log(e);
+      throw e;
     }
   }
 
