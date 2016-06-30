@@ -9,7 +9,7 @@ import {
 import {
   SeismicController,
   SEISMIC_ROUTE_URI,
-} from './api/v1/seismic/seismic.controller';
+} from './api/seismic/seismic.controller';
 
 /**
  * 컨트롤러 연결 클래스

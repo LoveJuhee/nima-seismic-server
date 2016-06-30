@@ -1,7 +1,7 @@
 'use strict';
 require('source-map-support').install();
 
-export const SEISMIC_ROUTE_URI = '/api/v1/seismic/';
+export const SEISMIC_ROUTE_URI = '/api/seismics/';
 
 /**
  * rest nima 에 대한 처리 클래스
