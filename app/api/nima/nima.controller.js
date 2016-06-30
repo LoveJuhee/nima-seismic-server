@@ -11,6 +11,11 @@ import {
 } from '../../config/config';
 let debug = require('debug')(LOGGING_ROUTE_NIMA);
 
+import {
+  default as nimaUtil
+} from '../../providers/util';
+const nodeUtil = require('util');
+
 export const NIMA_ROUTE_URI = '/api/nimas/';
 
 /**
@@ -29,7 +34,8 @@ export class NimaController {
    * @return {void} void
    */
   index(req, res) {
-    debug(`index`);
+    let params = req.params;
+    debug(`index ${nodeUtil.inspect(params)}`);
     res.send('index');
   }
 
@@ -40,7 +46,8 @@ export class NimaController {
    * @return {void} void
    */
   show(req, res) {
-    debug('show');
+    let params = nimaUtil.toEncodeObject(req.params);
+    debug(`show ${nodeUtil.inspect(params)}`);
     res.send('show');
   }
 
@@ -51,7 +58,8 @@ export class NimaController {
    * @return {void} void
    */
   create(req, res) {
-    debug('create');
+    let params = nimaUtil.toEncodeObject(req.params);
+    debug(`create ${nodeUtil.inspect(params)}`);
     res.send('create');
   }
 
@@ -62,7 +70,8 @@ export class NimaController {
    * @return {void} void
    */
   update(req, res) {
-    debug('update');
+    let params = nimaUtil.toEncodeObject(req.params);
+    debug(`update ${nodeUtil.inspect(params)}`);
     res.send('update');
   }
 
@@ -73,7 +82,8 @@ export class NimaController {
    * @return {void} void
    */
   destroy(req, res) {
-    debug('destroy');
+    let params = nimaUtil.toEncodeObject(req.params);
+    debug(`destroy ${nodeUtil.inspect(params)}`);
     res.send('destroy');
   }
 
