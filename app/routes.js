@@ -2,9 +2,8 @@
 require('source-map-support').install();
 
 import {
-  NimaController,
-  NIMA_ROUTE_URI,
-} from './api/nima/nima.controller';
+  NimaIndex,
+} from './api/nima/nima.index';
 
 import {
   SeismicController,
@@ -44,8 +43,11 @@ export class Routes {
     if (!app) {
       throw (new Error('app is null or undefined.'));
     }
+    // route 조건이 다른 경우 별도의 Index 클래스를 만들고 사용한다.
+    new NimaIndex(app);
+
+    // 기본 로직인 경우 Linker 를 이용하여 연결한다.
     let linker = new Linker();
-    linker.link(app, NIMA_ROUTE_URI, new NimaController());
     linker.link(app, SEISMIC_ROUTE_URI, new SeismicController());
   }
 
