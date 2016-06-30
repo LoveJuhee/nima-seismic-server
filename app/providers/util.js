@@ -1,8 +1,15 @@
 'use strict';
 require('source-map-support').install();
 
+import {
+  LOGGING_UTIL,
+} from '../config/config';
+let debug = require('debug')(LOGGING_UTIL);
+
 const fs = require('fs');
 const urlencode = require('urlencode');
+const queryString = require('query-string');
+const nodeUtil = require('util');
 
 /**
  * 유틸리티 라이브러리 클래스
@@ -42,26 +49,67 @@ class Util {
   }
 
   /**
+   * request params 객체를 인코딩하고 json을 object로 변환
+   * @param {string} params request 요청 내용
+   * @return {Object} 변환된 객체
+   */
+  fromRequestParams(params) {
+    let toEncodeObject = this.toEncodeObject;
+    let toJsonObject = this.toJsonObject;
+    return toEncodeObject(params)
+      .then(toJsonObject)
+      .catch(Promise.reject);
+  }
+
+  /**
+   * request params 객체를 인코딩하고 json을 object로 변환
+   * @param {string} params request 요청 내용
+   * @return {Object} 변환된 객체
+   */
+  toJsonObject(params) {
+    return new Promise(function (resolve, reject) {
+      if (!params) {
+        resolve({});
+      }
+      try {
+        let result = {};
+        for (var key in params) {
+          if (params.hasOwnProperty(key)) {
+            result[key] = queryString.parse(params[key]);
+          }
+        }
+        debug(`toJsonObject after ${nodeUtil.inspect(result)}`);
+        resolve(result);
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
+
+  /**
    * request 발생 시 파라메터를 한글대응하기 위해 인코딩하고 반환
    * @param {Object} params request 파라메터
    * @return {Object} encode 처리한 오브젝트
    */
   toEncodeObject(params) {
-    if (!params) {
-      return {};
-    }
-    try {
-      let result = {};
-      for (var key in params) {
-        if (params.hasOwnProperty(key)) {
-          result[key] = urlencode.decode(params[key]);
-        }
+    return new Promise(function (resolve, reject) {
+      if (!params) {
+        resolve({});
       }
-      return result;
-    } catch (e) {
-      console.log(e);
-      throw e;
-    }
+      try {
+        let result = {};
+        for (var key in params) {
+          if (params.hasOwnProperty(key)) {
+            result[key] = urlencode.decode(params[key]);
+          }
+        }
+        debug(`toEncodeObject after ${nodeUtil.inspect(result)}`);
+        resolve(result);
+      } catch (e) {
+        console.log(e);
+        reject(e);
+      }
+    });
   }
 
   /**
@@ -70,21 +118,24 @@ class Util {
    * @return {Object} decode 처리한 오브젝트
    */
   toDecodeObject(params) {
-    if (!params) {
-      return {};
-    }
-    try {
-      let result = {};
-      for (var key in params) {
-        if (params.hasOwnProperty(key)) {
-          result[key] = urlencode(params[key]);
-        }
+    return new Promise(function (resolve, reject) {
+      if (!params) {
+        resolve({});
       }
-      return result;
-    } catch (e) {
-      console.log(e);
-      throw e;
-    }
+      try {
+        let result = {};
+        for (var key in params) {
+          if (params.hasOwnProperty(key)) {
+            result[key] = urlencode(params[key]);
+          }
+        }
+        debug(`toDecodeObject ${nodeUtil.inspect(result)}`);
+        resolve(result);
+      } catch (e) {
+        console.log(e);
+        reject(e);
+      }
+    });
   }
 
   /**
