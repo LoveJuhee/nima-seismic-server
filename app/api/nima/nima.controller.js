@@ -1,7 +1,7 @@
 'use strict';
 require('source-map-support').install();
 
-export const NIMA_ROUTE_URI = '/api/nima/';
+export const NIMA_ROUTE_URI = '/api/nimas/';
 
 /**
  * rest nima 에 대한 처리 클래스
