@@ -1,12 +1,12 @@
 'use strict';
 require('source-map-support').install();
 
-/* test-code */
 import {
+  /* test-code */
   DEBUG_PARSE_CONFIG,
+  /* end-test-code */
   LOGGING_PARSE_CONFIG,
 } from './debug-flag';
-/* end-test-code */
 let debug = require('debug')(LOGGING_PARSE_CONFIG);
 import factory from './parser/parser-item-factory';
 
