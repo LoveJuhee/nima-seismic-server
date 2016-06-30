@@ -1,6 +1,16 @@
 'use strict';
 require('source-map-support').install();
 
+/* test-code */
+import {
+  IS_DEBUG_ROUTE_NIMA,
+} from '../../config/debug-flag';
+/* end-test-code */
+import {
+  LOGGING_ROUTE_NIMA,
+} from '../../config/config';
+let debug = require('debug')(LOGGING_ROUTE_NIMA);
+
 export const NIMA_ROUTE_URI = '/api/nimas/';
 
 /**
@@ -8,7 +18,9 @@ export const NIMA_ROUTE_URI = '/api/nimas/';
  * @class
  */
 export class NimaController {
-  constructor() {}
+  constructor() {
+    debug(`NimaController create`);
+  }
 
   /**
    * get 대응 로직
@@ -17,7 +29,7 @@ export class NimaController {
    * @return {void} void
    */
   index(req, res) {
-    console.log('index');
+    debug(`index`);
     res.send('index');
   }
 
@@ -28,7 +40,7 @@ export class NimaController {
    * @return {void} void
    */
   show(req, res) {
-    console.log('show');
+    debug('show');
     res.send('show');
   }
 
@@ -39,7 +51,7 @@ export class NimaController {
    * @return {void} void
    */
   create(req, res) {
-    console.log('create');
+    debug('create');
     res.send('create');
   }
 
@@ -50,7 +62,7 @@ export class NimaController {
    * @return {void} void
    */
   update(req, res) {
-    console.log('update');
+    debug('update');
     res.send('update');
   }
 
@@ -61,7 +73,7 @@ export class NimaController {
    * @return {void} void
    */
   destroy(req, res) {
-    console.log('destroy');
+    debug('destroy');
     res.send('destroy');
   }
 
