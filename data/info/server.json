@@ -1,0 +1,64 @@
+[
+  {
+    "kit": [
+      {
+        "hostname": "ict-dev",
+        "info": "사내기업팀 개발 서버",
+        "ip": "192.168.5.126"
+      },
+      {
+        "hostname": "ict-ex",
+        "info": "사내기업팀 외부 서버",
+        "ip": "122.199.200.220",
+        "services": [
+          {
+            "name": "nima",
+            "info": "챗봇서비스",
+            "ports": [
+              {
+                "info": "web",
+                "port": "9700"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "hostname": "kitv-dev",
+        "info": "kitv 개발 서버",
+        "ip": "122.199.200.205",
+        "services": [
+          {
+            "name": "rams",
+            "info": "위험성평가시스템",
+            "ports": [
+              {
+                "info": "web",
+                "port": "80"
+              }
+            ]
+          },
+          {
+            "name": "gitlab",
+            "info": "형상관리시스템",
+            "ports": [
+              {
+                "info": "web",
+                "port": "49031"
+              }
+            ]
+          }
+        ],
+        "domain": "ra.or.kr"
+      }
+    ]
+  },
+  {
+    "kma": [
+      {
+        "hostname": "eew1a",
+        "ip": "203.xxx.xxx.xxx"
+      }
+    ]
+  }
+]
